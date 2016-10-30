@@ -9,11 +9,15 @@ ifeq ($(shell uname),Darwin)
 MYSQL_INCLUDE = /opt/local/include/mysql56/mysql
 MYSQL_LIB = /opt/local/lib/mysql56/mysql
 else
+ifeq ($(shell uname -o),FreeBSD)
+MYSQL_INCLUDE = /usr/local/include/mysql
+MYSQL_LIB = /usr/local/lib
+else
 ifeq ($(shell uname -o),Cygwin)
 MYSQL_INCLUDE = /usr/include/mysql
 MYSQL_LIB = /usr/lib
 else
-MYSQLROOT = 
+MYSQLROOT =
 MYSQL_INCLUDE = $(MYSQLROOT)/include
 MYSQL_LIB = $(MYSQLROOT)/lib
 endif
@@ -131,7 +135,7 @@ crash2: crash_tests2.o
 crash3: crash_tests3.o
 	$(LINK) -o $@ $^ $(LIBDIRS) -lcgreen
 
-suite1: suite1.o suite_person_tests.o suite_strlen_tests.o 
+suite1: suite1.o suite_person_tests.o suite_strlen_tests.o
 	$(LINK) -o $@ $^ $(LIBDIRS) -lcgreen -lmysqlclient
 
 test_as_xml0: test_as_xml0.o

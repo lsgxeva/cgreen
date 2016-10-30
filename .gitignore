@@ -5,3 +5,4 @@ CMakeFiles
 Testing
 *.exe
 *.stackdump
+*.udb

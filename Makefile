@@ -47,6 +47,9 @@ endif
 ifeq ($(OS),Darwin)
 	PREFIX=lib
 	SUFFIX=.dylib
+else ifeq ($(OS),FreeBSD)
+	PREFIX=lib
+	SUFFIX=.so
 else ifeq ($(OS),Cygwin)
 	PREFIX=cyg
 	SUFFIX=.dll
